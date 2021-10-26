@@ -16,8 +16,8 @@ class InvoiceControllerTest extends TestCase
      */
     public function create_returns_a_view()
     {
-
-        $response = $this->get(route('invoice.create'));
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->get(route('invoice.create'));
 
         $response->assertStatus(200);
         $response->assertViewIs('invoice.create');
